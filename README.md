@@ -9,5 +9,5 @@
 [06. state 값이 동일할 경우 렌더링 방지](06-dont-render-no-change/index.html)
 [07. 불필요한 render 발생](07-unnecessary-render/index.html)
 [08. debounce로 렌더링을 리팩토링](08-refactor-rendering-by-debounce/index.html)
-[09. ](./09/index.html)
+[09. render 추상화](09-abstract-render/index.html)
 [10. ](./10/index.html)
