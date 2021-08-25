@@ -30,8 +30,13 @@
   `;
   }
 
+  let renderCount = 0;
   const render = () => {
-    app.innerHTML = Counter();
+    app.innerHTML = `
+      <div>renderCount: ${renderCount}</div>
+      ${Counter()}
+    `;
+    renderCount += 1;
   }
 
   render();
