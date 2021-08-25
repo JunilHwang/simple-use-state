@@ -25,44 +25,33 @@
       render();
     }
     currentStateKey += 1;
-    return [ state, setState ];
+    return [state, setState];
   }
 
-  function Counter () {
+  function Counter() {
     const [count, setCount] = useState(1);
 
-    window.increment = () => setCount(count + 1);
+    window.nochange = () => setCount(count);
 
     return `
       <div>
         <strong>count: ${count} </strong>
-        <button onclick="increment()">증가</button>
+        <button onclick="nochange()">클릭</button>
       </div>
     `;
   }
 
-  function Cat () {
-    const [cat, setCat] = useState('고양이');
-
-    window.meow = () => setCat(cat + ' 야옹!');
-
-    return `
-      <div>
-        <strong>${cat}</strong>
-        <button onclick="meow()">고양이의 울음소리</button>
-      </div>
-    `;
-  }
-
+  let renderCount = 0;
   const render = () => {
     const $app = document.querySelector('#app');
     $app.innerHTML = `
       <div>
+        renderCount: ${renderCount}
         ${Counter()}
-        ${Cat()}
       </div>
     `;
     currentStateKey = 0;
+    renderCount += 1;
   }
 
   render();
