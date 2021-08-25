@@ -3,7 +3,7 @@
 
 [01. state 틀 구성](01-make-state-frame/index.html)
 [02. 한 개의 state만 있을 경우](02-only-one-state/index.html)
-[03. ](./03/index.html)
+[03. 여러 개의 state가 있을 경우](03-multi-state/index.html)
 [04. ](./04/index.html)
 [05. ](./05/index.html)
 [06. ](./06/index.html)
