@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  let state;
+  function useState(initState) {
+    if (state === undefined) state = initState; // state를 정의한다.
+    const setState = (newState) => {
+      state = newState; // 새로운 state를 할당한다
+      render(); // render를 실행한다.
+    }
+    return [ state, setState ];
+  }
+
+  function Counter () {
+    const [count, setCount] = useState(1);
+
+    window.increment = () => setCount(count + 1);
+
+    return `
+      <div>
+        <strong>count: ${count} </strong>
+        <button onclick="increment()">증가</button>
+      </div>
+    `;
+  }
+
+  const render = () => {
+    app.innerHTML = Counter();
+  }
+
+  render();
+</script>
+</body>
+</html>
