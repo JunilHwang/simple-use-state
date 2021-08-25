@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  let currentStateKey = 0;
+  const states = [];
+
+  function useState(initState) {
+    const key = currentStateKey;
+    if (states.length === key) {
+      states.push(initState);
+    }
+
+    const state = states[key];
+    const setState = (newState) => {
+      // 값이 똑같은 경우
+      if (newState === state) return;
+
+      // 배열/객체일 때는 JSON.stringify를 통해 간단하게 비교할 수 있다.
+      // 그런데 Set, Map, WeekMap, Symbol 같은 원시타입의 경우
+      // JSON으로 파싱되지 않기 때문에 주의해야한다.
+      if (JSON.stringify(newState) === JSON.stringify(state)) return;
+
+      // 기존 값과 다른 경우에만 값을 변경하고 render()를 실행한다.
+      states[key] = newState;
+      render();
+    }
+    currentStateKey += 1;
+    return [state, setState];
+  }
+
+  function Counter() {
+    const [count, setCount] = useState(1);
+
+    window.nochange = () => setCount(count);
+
+    return `
+      <div>
+        <strong>count: ${count} </strong>
+        <button onclick="nochange()">변화없음</button>
+      </div>
+    `;
+  }
+
+  let renderCount = 0;
+  const render = () => {
+    const $app = document.querySelector('#app');
+    $app.innerHTML = `
+      <div>
+        renderCount: ${renderCount}
+        ${Counter()}
+      </div>
+    `;
+    currentStateKey = 0;
+    renderCount += 1;
+  }
+
+  render();
+</script>
+</body>
+</html>
